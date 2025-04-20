@@ -19,7 +19,7 @@ qr = qrcode.QRCode(
 qr.add_data(data)
 qr.make(fit=True)
 
-# Gerar imagem do QR em preto e branco
+#imagem do QR em preto e branco
 qr_image = qr.make_image(fill_color="black", back_color="white").convert("L")
 
 # Carregar a imagem de fundo e redimensionar para o tamanho do QR
@@ -31,7 +31,7 @@ background_image = background_image.resize((qr_width, qr_height))
 enhancer = ImageEnhance.Contrast(background_image)
 background_image = enhancer.enhance(2)  # Aumenta o contraste da imagem de fundo
 
-# Criando uma nova imagem com fundo transparente para o QR estilizado
+# Criar uma nova imagem com fundo transparente para o QR estilizado
 stylized_qr = Image.new("RGBA", (qr_width, qr_height), (255, 255, 255, 0))
 
 # Preenche as áreas escuras do QR com os pixels da imagem de fundo
@@ -43,7 +43,7 @@ for x in range(qr_width):
             # Mantém as áreas brancas do QR code transparentes
             stylized_qr.putpixel((x, y), (255, 255, 255, 0))
 
-# Adicionar uma borda branca
+# Adicionar borda branca
 border_size = 10  # tamanho da borda (fino)
 stylized_qr_with_border = ImageOps.expand(stylized_qr, border=border_size, fill="white")
 
